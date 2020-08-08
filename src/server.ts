@@ -1,7 +1,7 @@
 import app from './app'
 import config from './config/config'
 import url from "url";
-import chat from "./chat";
+import chat_ws from "./chat_ws"
 
 const server = app.listen(`${config.PORT}`, error => {
     if (error) {
@@ -15,8 +15,8 @@ server.on('upgrade', (req, socket, head) => {
     const pathname = url.parse(req.url).pathname
 
     if (pathname === '/') {
-        chat.handleUpgrade(req, socket, head, ws => {
-            chat.emit('connection', ws, req)
+        chat_ws.handleUpgrade(req, socket, head, ws => {
+            chat_ws.emit('connection', ws, req)
         })
     } else {
         socket.destroy()
