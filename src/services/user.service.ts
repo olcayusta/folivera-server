@@ -11,7 +11,7 @@ class UserService {
         return rows[0]
     }
 
-    async saveUser(email, password, displayName, avatarUrl): Promise<User> {
+    async saveUser(email: string, password: string, displayName: string, avatarUrl: string): Promise<User> {
         const sql = `INSERT INTO "user" (email, password, "displayName", "avatarUrl")
                      VALUES ($1, $2, $3, $4)`
         const {rows} = await pool.query(sql, [email, password, displayName, avatarUrl])

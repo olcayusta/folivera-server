@@ -30,7 +30,7 @@ export const userRoute = (app: Application) => {
     router.get('/:userId/favorites', async (req: Request, res: Response) => {
         try {
             const {userId} = req.params
-            const movies = await userService.getFavoriteMovies(userId)
+            const movies = await userService.getFavoriteMovies(+userId)
             res.json(movies)
         } catch (e) {
             throw e

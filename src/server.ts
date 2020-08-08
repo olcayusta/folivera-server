@@ -1,9 +1,9 @@
-import app from './app'
+import App from './app'
 import config from './config/config'
 import url from "url";
 import chat_ws from "./chat_ws"
 
-const server = app.listen(`${config.PORT}`, error => {
+const server = App.listen(`${config.PORT}`, error => {
     if (error) {
         console.error(error)
     } else {

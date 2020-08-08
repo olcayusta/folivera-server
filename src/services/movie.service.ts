@@ -1,8 +1,8 @@
-import { MovieModel } from '../models/movie.model'
+import { Movie } from '../models/movie.model'
 import pool from '../config/db'
 
 class MovieService {
-    async getAllMovies(): Promise<MovieModel[]> {
+    async getAllMovies(): Promise<Movie[]> {
         try {
             const sql = `SELECT *
                          FROM movie
@@ -14,7 +14,7 @@ class MovieService {
         }
     }
 
-    async getMovie(movieId: number): Promise<MovieModel> {
+    async getMovie(movieId: number): Promise<Movie> {
         try {
             const sql = `SELECT *
                          FROM movie
