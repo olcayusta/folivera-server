@@ -1,5 +1,5 @@
 import { Application, Request, Response, Router } from 'express'
-import { movieService } from '../services/movie.service'
+import { movieService } from './movie.service'
 import { commentService } from '../services/comment.service'
 
 const router: Router = Router()
@@ -24,6 +24,10 @@ export const movieRoute = (app: Application) => {
         } catch (e) {
             throw e
         }
+        // throw new Error('BROKEN')
+        /*  return res.status(400).send({
+              msg: 'This is error!'
+          })*/
     })
 
     router.get('/:movieId/comments', async (req: Request, res: Response) => {
