@@ -1,5 +1,5 @@
 import { Server, OPEN } from 'ws'
-import { chatService } from './services/chat.service'
+import { chatService } from './app/services/chat.service'
 
 const chat_ws = new Server({noServer: true})
 

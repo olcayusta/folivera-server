@@ -1,5 +1,5 @@
 import { Application, Request, Response, Router } from 'express'
-import { searchService } from '../services/search.service'
+import { searchService } from '../app/services/search.service'
 
 const router: Router = Router()
 

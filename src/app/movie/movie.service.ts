@@ -1,5 +1,5 @@
 import { Movie } from '../models/movie.model'
-import pool from '../config/db'
+import pool from '../../config/db'
 
 class MovieService {
     async getAllMovies(): Promise<Movie[]> {

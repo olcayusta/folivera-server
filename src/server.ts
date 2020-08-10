@@ -1,9 +1,9 @@
-import App from './app'
-import config from './config/config'
-import url from "url";
+import app from './app'
 import chat_ws from "./chat_ws"
+import config from './config/config'
+import { parse } from 'url';
 
-const server = App.listen(`${config.PORT}`, error => {
+const server = app.listen(`${config.PORT}`, error => {
     if (error) {
         console.error(error)
     } else {
@@ -12,7 +12,7 @@ const server = App.listen(`${config.PORT}`, error => {
 })
 
 server.on('upgrade', (req, socket, head) => {
-    const pathname = url.parse(req.url).pathname
+    const pathname = parse(req.url).pathname
 
     if (pathname === '/') {
         chat_ws.handleUpgrade(req, socket, head, ws => {
