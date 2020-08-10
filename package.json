@@ -14,7 +14,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": " ",
+    "express": "^4.17.1",
     "pg": "^8.3.0",
     "ws": "^7.3.1"
   },
@@ -26,7 +26,6 @@
     "@types/pg": "^7.14.4",
     "@types/ws": "^7.2.6",
     "reflect-metadata": "^0.1.13",
-    "sucrase": "^3.15.0",
     "ts-node-dev": "^1.0.0-pre.56",
     "typescript": "^3.9.7"
   }

@@ -1,5 +1,5 @@
 import { Application, Request, Response, Router } from 'express'
-import { genreService } from '../app/services/genre.service'
+import { genreService } from './genre.service'
 
 const router: Router = Router()
 

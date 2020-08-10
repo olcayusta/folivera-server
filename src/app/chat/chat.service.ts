@@ -1,7 +1,7 @@
 import pool from '../../config/db'
 import { Message } from '../models/message.model'
 import { OPEN } from 'ws'
-import chat_ws from '../../chat_ws'
+import chat_ws from './chat_ws'
 
 class ChatService {
     async saveMessage(text: string, userId: number, movieId: number): Promise<Message> {

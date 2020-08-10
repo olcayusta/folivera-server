@@ -1,7 +1,9 @@
 import { Server, OPEN } from 'ws'
-import { chatService } from './app/services/chat.service'
+import { chatService } from './chat.service'
 
-const chat_ws = new Server({noServer: true})
+const chat_ws = new Server({
+    noServer: true
+})
 
 chat_ws.on('connection', ws => {
     console.log('Welcome. --- Wss1 sunucusuna baglanildi... Welcome. ---')

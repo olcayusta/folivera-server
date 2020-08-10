@@ -19,7 +19,8 @@ class MovieService {
             const sql = `SELECT *
                          FROM movie
                          WHERE id = $1`
-            const {rows} = await pool.query(sql, [movieId])
+            const values = [movieId]
+            const {rows} = await pool.query(sql, values)
             return rows[0]
         } catch (e) {
             throw e
@@ -31,7 +32,8 @@ class MovieService {
             const sql = `SELECT *
                          FROM movie_comment
                          WHERE "movieId" = $1`
-            const {rows} = await pool.query(sql, [movieId])
+            const values = [movieId]
+            const {rows} = await pool.query(sql, values)
             return rows
         } catch (e) {
             throw e

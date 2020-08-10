@@ -1,6 +1,6 @@
 import { Application, Request, Response, Router } from 'express'
 import { movieService } from './movie.service'
-import { commentService } from '../services/comment.service'
+import { commentService } from '../comment/comment.service'
 
 const router: Router = Router()
 

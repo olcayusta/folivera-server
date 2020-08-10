@@ -1,5 +1,5 @@
 import app from './app'
-import chat_ws from "./chat_ws"
+import chat_ws from "./app/chat/chat_ws"
 import config from './config/config'
 import { parse } from 'url';
 
