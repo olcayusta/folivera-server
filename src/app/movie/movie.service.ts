@@ -1,4 +1,4 @@
-import { Movie } from '../models/movie.model'
+import { Movie } from '../shared/models/movie.model'
 import pool from '../../config/db'
 
 class MovieService {
@@ -29,9 +29,14 @@ class MovieService {
 
     async getMovieComments(movieId: number): Promise<Comment[]> {
         try {
-            const sql = `SELECT *
-                         FROM movie_comment
-                         WHERE "movieId" = $1`
+            const sql = `SELECT mc.*,
+                                (
+                                    SELECT row_to_json(u)
+                                    FROM "user" u
+                                    WHERE u.id = mc."userId"
+                                ) AS "user"
+                         FROM movie_comment mc
+                         WHERE "movieId" = 1`
             const values = [movieId]
             const {rows} = await pool.query(sql, values)
             return rows

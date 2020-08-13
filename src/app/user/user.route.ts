@@ -1,6 +1,7 @@
 import { Application, Request, Response, Router } from 'express'
 import { userService } from './user.service'
 import { authService } from '../auth/auth.service'
+import { User } from '../shared/models/user'
 
 const router: Router = Router()
 
@@ -37,6 +38,20 @@ export const userRoute = (app: Application) => {
         }
     })
 
+    // POST
+    // Create new user
+    router.post('/', async (req: Request, res: Response) => {
+        try {
+            const {email, password, displayName, avatarUrl} = req.body
+            const user = await userService.saveUser(email, password, displayName, avatarUrl)
+            res.json(user)
+        } catch (e) {
+            throw e
+        }
+    })
+
+    // GET
+    // List favorites movies
     router.post('/favorites', async (req: Request, res: Response) => {
         try {
             const {movieId} = req.body
@@ -47,6 +62,8 @@ export const userRoute = (app: Application) => {
         }
     })
 
+    // POST
+    // Email and password authentication
     router.post('/login', async (req: Request, res: Response) => {
         try {
             const {email, password} = req.body

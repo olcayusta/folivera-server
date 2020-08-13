@@ -1,7 +1,7 @@
-import { User } from '../models/user.model'
-import { Movie } from '../models/movie.model'
+import { Movie } from '../shared/models/movie.model'
 
 import pool from '../../config/db'
+import { User } from '../shared/models/user'
 
 class UserService {
     async getUser(userId: number): Promise<User> {

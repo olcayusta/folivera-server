@@ -1,5 +1,5 @@
 import pool from '../../config/db'
-import { Genre } from '../models/genre.model'
+import { Genre } from '../shared/models/genre.model'
 
 class GenreService {
     async getAllGenres(): Promise<Genre[]> {

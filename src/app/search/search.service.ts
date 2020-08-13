@@ -1,5 +1,5 @@
 import pool from '../../config/db'
-import { Movie } from '../models/movie.model'
+import { Movie } from '../shared/models/movie.model'
 
 class SearchService {
     async search(searchTerm: string): Promise<Movie[]> {

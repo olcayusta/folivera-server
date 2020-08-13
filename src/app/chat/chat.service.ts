@@ -1,5 +1,5 @@
 import pool from '../../config/db'
-import { Message } from '../models/message.model'
+import { Message } from '../shared/models/message.model'
 import { OPEN } from 'ws'
 import chat_ws from './chat_ws'
 

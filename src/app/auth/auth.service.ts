@@ -1,5 +1,5 @@
 import pool from '../../config/db'
-import { User } from '../models/user.model'
+import { User } from '../shared/models/user'
 
 class AuthService {
     async emailAndPasswordValidate(email: string, password: string): Promise<User> {
