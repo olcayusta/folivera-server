@@ -7,7 +7,7 @@ const server = app.listen(`${config.PORT}`, error => {
     if (error) {
         console.error(error)
     } else {
-        console.log(`Server is listening on ${config.PORT}`)
+        console.log(`Server is listening on http://localhost:${config.PORT}`)
     }
 })
 
