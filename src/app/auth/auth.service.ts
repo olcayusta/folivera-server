@@ -4,7 +4,7 @@ import { User } from '../shared/models/user'
 class AuthService {
     async emailAndPasswordValidate(email: string, password: string): Promise<User> {
         try {
-            const sql = `SELECT *
+            const sql = `SELECT id, email, "displayName", "avatarUrl"
                          FROM "user"
                          WHERE email = $1
                            AND password = $2`

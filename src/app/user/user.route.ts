@@ -68,8 +68,14 @@ export const userRoute = (app: Application) => {
         try {
             const {email, password} = req.body
             const user = await authService.emailAndPasswordValidate(email, password)
-            res.json(user)
+            if (user) {
+                res.json(user)
+            } else {
+                res.sendStatus(404)
+            }
+
         } catch (e) {
+            console.log('eee');
             throw e
         }
     })

@@ -10,6 +10,7 @@ import { searchRoute } from './app/search/search.route'
 import { userRoute } from './app/user/user.route'
 import { genreRoute } from './app/genre/genre.route'
 import { accountRoute } from './app/account/account.route'
+import { feedbackRoute } from './app/feedback/feedback.route'
 
 app.use(express.json())
 app.use(cors())
@@ -21,5 +22,6 @@ searchRoute(app)
 userRoute(app)
 genreRoute(app)
 accountRoute(app)
+feedbackRoute(app)
 
 export default app
