@@ -7,10 +7,12 @@ class AuthService {
     password: string
   ): Promise<User> {
     try {
-      const sql = `SELECT id, email, "displayName", "avatarUrl"
-                         FROM "user"
-                         WHERE email = $1
-                           AND password = $2`
+      const sql = `
+                SELECT id, email, "displayName", "avatarUrl"
+                FROM "user"
+                WHERE email = $1
+                  AND password = $2
+            `
       const values = [email, password]
       const { rows } = await pool.query(sql, values)
       return rows[0]

@@ -4,11 +4,13 @@ import { Movie } from '../shared/models/movie.model'
 class AccountService {
   async watchLater(): Promise<Movie[]> {
     try {
-      const sql = `SELECT m.id, m.title, m.year, m."posterUrl"
-                         FROM movie m
-                                  INNER JOIN user_library ul ON ul."movieId" = m.id
-                         WHERE "userId" = $1
-                           AND vote = 'watch_later'`
+      const sql = `
+                SELECT m.id, m.title, m.year, m."posterUrl"
+                FROM movie m
+                         INNER JOIN user_library ul ON ul."movieId" = m.id
+                WHERE "userId" = $1
+                  AND vote = 'watch_later'
+            `
       const values = [1]
       const { rows } = await pool.query(sql, values)
       return rows
@@ -19,11 +21,13 @@ class AccountService {
 
   async IWatched(): Promise<Movie[]> {
     try {
-      const sql = `SELECT m.id, m.title, m.year, m."posterUrl"
-                         FROM movie m
-                                  INNER JOIN user_library ul ON ul."movieId" = m.id
-                         WHERE "userId" = $1
-                           AND vote = 'i_watched'`
+      const sql = `
+                SELECT m.id, m.title, m.year, m."posterUrl"
+                FROM movie m
+                         INNER JOIN user_library ul ON ul."movieId" = m.id
+                WHERE "userId" = $1
+                  AND vote = 'i_watched'
+            `
       const values = [1]
       const { rows } = await pool.query(sql, values)
       return rows

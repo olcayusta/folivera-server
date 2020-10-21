@@ -6,10 +6,15 @@ import { User } from '../shared/models/user'
 class UserService {
   async getUser(userId: number): Promise<User> {
     try {
-      const sql = `SELECT *
-                         FROM "user"
-                         WHERE id = $1`
-      const { rows } = await pool.query(sql, [userId])
+      const query = {
+        text: `
+                    SELECT *
+                    FROM "user"
+                    WHERE id = $1
+                `,
+        values: [userId]
+      }
+      const { rows } = await pool.query(query)
       return rows[0]
     } catch (e) {
       throw e
@@ -23,8 +28,10 @@ class UserService {
     avatarUrl: string
   ): Promise<User> {
     try {
-      const sql = `INSERT INTO "user" (email, password, "displayName", "avatarUrl")
-                         VALUES ($1, $2, $3, $4) RETURNING *`
+      const sql = `
+                INSERT INTO "user" (email, password, "displayName", "avatarUrl")
+                VALUES ($1, $2, $3, $4)
+                RETURNING *`
       const { rows } = await pool.query(sql, [
         email,
         password,
@@ -39,16 +46,18 @@ class UserService {
 
   async getContinueWatchingMovies(userId: number): Promise<Movie[]> {
     /* const sql = `SELECT *
-                      FROM user_continue_watching
-                      WHERE "userId" = $1`
-         const {rows} = await pool.query(sql, [userId])
-         return rows*/
+                                                                                          FROM user_continue_watching
+                                                                                          WHERE "userId" = $1`
+                                                                             const {rows} = await pool.query(sql, [userId])
+                                                                             return rows*/
 
     try {
-      const sql = `SELECT *
-                         FROM movie
-                         ORDER BY id DESC
-                         LIMIT 4`
+      const sql = `
+                SELECT *
+                FROM movie
+                ORDER BY id DESC
+                LIMIT 4
+            `
       const { rows } = await pool.query(sql)
       return rows
     } catch (e) {
@@ -58,11 +67,16 @@ class UserService {
 
   async getFavoriteMovies(userId: number): Promise<Movie[]> {
     try {
-      const sql = `SELECT m.*
-                         FROM movie m
-                                  INNER JOIN user_favorite uf on m.id = uf."movieId"
-                         WHERE "userId" = $1`
-      const { rows } = await pool.query(sql, [userId])
+      const query = {
+        text: `
+                    SELECT m.*
+                    FROM movie m
+                             INNER JOIN user_favorite uf on m.id = uf."movieId"
+                    WHERE "userId" = $1
+                `,
+        values: [userId]
+      }
+      const { rows } = await pool.query(query)
       return rows
     } catch (e) {
       throw e
@@ -71,10 +85,15 @@ class UserService {
 
   async saveFavorite(movieId: number): Promise<Movie> {
     try {
-      const sql = `INSERT INTO user_favorite ("movieId", "userId")
-                         VALUES ($1, $2)
-                         RETURNING *`
-      const { rows } = await pool.query(sql, [movieId, 1])
+      const query = {
+        text: `
+                    INSERT INTO user_favorite ("movieId", "userId")
+                    VALUES ($1, $2)
+                    RETURNING *
+                `,
+        values: [movieId, 1]
+      }
+      const { rows } = await pool.query(query)
       return rows[0]
     } catch (e) {
       throw e
